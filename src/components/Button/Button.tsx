@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import type { Theme } from '../../theme/types';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outlined';
 export type ButtonSize = 'small' | 'medium' | 'large';
@@ -11,62 +12,66 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   children: React.ReactNode;
 }
 
-const StyledButton = styled.button<Omit<ButtonProps, 'children'>>`
+interface StyledButtonProps extends Omit<ButtonProps, 'children'> {
+  theme: Theme;
+}
+
+const StyledButton = styled.button<StyledButtonProps>`
   border: none;
-  border-radius: 4px;
+  border-radius: ${({ theme }) => theme.borderRadius.medium};
   cursor: pointer;
-  font-family: inherit;
-  transition: all 0.2s ease-in-out;
+  font-family: ${({ theme }) => theme.typography.fontFamily};
+  transition: ${({ theme }) => theme.transitions.default};
   width: ${({ fullWidth }) => (fullWidth ? '100%' : 'auto')};
 
   /* Size styles */
-  ${({ size = 'medium' }) => {
+  ${({ theme, size = 'medium' }) => {
     switch (size) {
       case 'small':
         return `
-          padding: 8px 16px;
-          font-size: 14px;
+          padding: ${theme.spacing.xs} ${theme.spacing.small};
+          font-size: ${theme.typography.fontSize.small};
         `;
       case 'large':
         return `
-          padding: 16px 32px;
-          font-size: 18px;
+          padding: ${theme.spacing.medium} ${theme.spacing.large};
+          font-size: ${theme.typography.fontSize.large};
         `;
       default:
         return `
-          padding: 12px 24px;
-          font-size: 16px;
+          padding: ${theme.spacing.small} ${theme.spacing.medium};
+          font-size: ${theme.typography.fontSize.medium};
         `;
     }
   }}
 
   /* Variant styles */
-  ${({ variant = 'primary' }) => {
+  ${({ theme, variant = 'primary' }) => {
     switch (variant) {
       case 'secondary':
         return `
-          background-color: #6c757d;
-          color: white;
+          background-color: ${theme.colors.secondary.main};
+          color: ${theme.colors.background.default};
           &:hover {
-            background-color: #5a6268;
+            background-color: ${theme.colors.secondary.dark};
           }
         `;
       case 'outlined':
         return `
           background-color: transparent;
-          border: 2px solid #007bff;
-          color: #007bff;
+          border: 2px solid ${theme.colors.primary.main};
+          color: ${theme.colors.primary.main};
           &:hover {
-            background-color: #007bff;
-            color: white;
+            background-color: ${theme.colors.primary.main};
+            color: ${theme.colors.background.default};
           }
         `;
       default:
         return `
-          background-color: #007bff;
-          color: white;
+          background-color: ${theme.colors.primary.main};
+          color: ${theme.colors.background.default};
           &:hover {
-            background-color: #0056b3;
+            background-color: ${theme.colors.primary.dark};
           }
         `;
     }
@@ -75,6 +80,13 @@ const StyledButton = styled.button<Omit<ButtonProps, 'children'>>`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    background-color: ${({ theme }) => theme.colors.text.disabled};
+    color: ${({ theme }) => theme.colors.background.default};
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: ${({ theme }) => theme.shadows.medium};
   }
 `;
 
