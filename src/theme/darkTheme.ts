@@ -3,38 +3,38 @@ import type { Theme } from './types';
 export const darkTheme: Theme = {
   colors: {
     primary: {
-      main: '#4dabf5',
-      light: '#74c0fc',
-      dark: '#339af0',
+      main: '#90caf9',
+      light: '#e3f2fd',
+      dark: '#42a5f5',
     },
     secondary: {
-      main: '#868e96',
-      light: '#adb5bd',
-      dark: '#495057',
+      main: '#ce93d8',
+      light: '#f3e5f5',
+      dark: '#ab47bc',
     },
     background: {
-      default: '#212529',
-      paper: '#343a40',
+      default: '#121212',
+      paper: '#1e1e1e',
     },
     text: {
-      primary: '#f8f9fa',
-      secondary: '#e9ecef',
-      disabled: '#adb5bd',
+      primary: '#ffffff',
+      secondary: '#b0bec5',
+      disabled: '#757575',
     },
     error: {
-      main: '#fa5252',
-      light: '#ff6b6b',
-      dark: '#e03131',
+      main: '#f44336',
+      light: '#e57373',
+      dark: '#d32f2f',
     },
     warning: {
-      main: '#ffd43b',
-      light: '#ffd43b',
-      dark: '#fcc419',
+      main: '#ffa726',
+      light: '#ffb74d',
+      dark: '#f57c00',
     },
     success: {
-      main: '#51cf66',
-      light: '#69db7c',
-      dark: '#37b24d',
+      main: '#66bb6a',
+      light: '#81c784',
+      dark: '#388e3c',
     },
   },
   typography: {
@@ -64,9 +64,9 @@ export const darkTheme: Theme = {
     large: '1rem',
   },
   shadows: {
-    small: '0 2px 4px rgba(0,0,0,0.2)',
-    medium: '0 4px 6px rgba(0,0,0,0.2)',
-    large: '0 10px 15px rgba(0,0,0,0.2)',
+    small: '0 2px 4px rgba(0,0,0,0.3)',
+    medium: '0 4px 6px rgba(0,0,0,0.3)',
+    large: '0 10px 15px rgba(0,0,0,0.3)',
   },
   transitions: {
     default: 'all 0.2s ease-in-out',

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { ThemeProvider } from '@emotion/react';
 import type { Theme } from '../../theme/types';
+import { defaultTheme } from '../../theme/defaultTheme';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'outlined';
 export type ButtonSize = 'small' | 'medium' | 'large';
@@ -13,7 +15,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 }
 
 interface StyledButtonProps extends Omit<ButtonProps, 'children'> {
-  theme: Theme;
+  // theme prop은 ThemeProvider를 통해 자동으로 주입되므로 여기서 제거
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -98,13 +100,15 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   return (
-    <StyledButton
-      variant={variant}
-      size={size}
-      fullWidth={fullWidth}
-      {...props}
-    >
-      {children}
-    </StyledButton>
+    <ThemeProvider theme={defaultTheme}>
+      <StyledButton
+        variant={variant}
+        size={size}
+        fullWidth={fullWidth}
+        {...props}
+      >
+        {children}
+      </StyledButton>
+    </ThemeProvider>
   );
 }; 
